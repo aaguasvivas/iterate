@@ -1,6 +1,13 @@
 import os
 import sys
 
+# Instructions:
+        # go into each  then count dirs with c source code
+        # then go into each dir submission
+        # get c source code into string
+        # count how many source code
+
+
 # We start at problems directory
 directory = '/home/aaguasvivas/Documents/DataSets/IntroClass/problems'
 # Checksum path
@@ -25,7 +32,8 @@ for filename in os.listdir(directory):
         if os.path.isdir(problemDir):
             # for directory in students,
             for dir in stdDirs:
-                # if directory starts with period, continue
+                # if directory starts with period, continue because we don't want to go into those
+                # Directories that start with "." dion't contain C programs we can print
                 if (dir.startswith(".")):
                     continue
                 # other directories would be students
@@ -34,19 +42,25 @@ for filename in os.listdir(directory):
                     count =+ 1
                     # cd into these directories
                     os.chdir(dir)
-                    # cd into submission
+                    # print current path, to know where we are at
                     print(os.path.abspath(dir))
                     # ***To this point we are inside a student directory
                     submission = os.path.abspath(dir)
                     # Need to cd into attemptsssssss - MAJOR KEY
-                    #for direct in submission:
-                    # stops here, gotta cd into attempts
+                    # stops working here, got to cd into attempts, there is different attempts per student
+                    # these attempts all contain different C code and fixes
                     if (os.path.isdir(submission)):
                         for direct in os.listdir(submission):
+                            # the attempts directory starts with 0
+                            # if we see a 0, we want to go into that directory
                             if filename.startswith("0"):
+                                # change directory
                                 os.chdir(direct)
+                                # print current path
                                 print(os.path.abspath(direct))
+                                # store that path
                                 attempts = os.path.abspath(direct)
+                                # trying to CD into attempts
                                 os.chdir(attempts)
                                 for filename in os.listdir(attempts):
                                 # if the file ends with c in submissions, we want to print
@@ -56,6 +70,7 @@ for filename in os.listdir(directory):
                                         fileName = filename
                                         with open(fileName) as f:
                                             lineList = f.readlines()
+                                        # here we print the source code
                                         for l in lineList:
                                             print(l)
                                             continue
@@ -68,11 +83,11 @@ for filename in os.listdir(directory):
         os.chdir(cwd)
         print (os.listdir(cwd))
 
-        # go into each  then count dirs with c source code
-        # then go into each dir submission
-        # get c source code into string
-        # count how many source code
 
+
+
+
+    # IGNORE
     # Now we are inside checksum
     # Inside checksum, print number of students, then cd into each student submission
     """ for filename in os.listdir(path):
