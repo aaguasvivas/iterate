@@ -39,25 +39,28 @@ for filename in os.listdir(directory):
                     # ***To this point we are inside a student directory
                     submission = os.path.abspath(dir)
                     # Need to cd into attemptsssssss - MAJOR KEY
-                    for direct in submission:
-                        if (os.path.isdir(direct)):
-                            os.chdir(direct)
-                            print(os.path.abspath(direct))
-                            attempts = os.path.abspath(direct)
-                            os.chdir(attempts)
-                            for filename in os.listdir(attempts):
-                            # if the file ends with c in submissions, we want to print
-                                if filename.endswith(".c"):
-                                    print(os.path.abspath(filename))
-                                    lineList = list()
-                                    fileName = filename
-                                    with open(fileName) as f:
-                                        lineList = f.readlines()
-                                    for l in lineList:
-                                        print(l)
+                    #for direct in submission:
+                    # stops here, gotta cd into attempts
+                    if (os.path.isdir(submission)):
+                        for direct in os.listdir(submission):
+                            if filename.startswith("0"):
+                                os.chdir(direct)
+                                print(os.path.abspath(direct))
+                                attempts = os.path.abspath(direct)
+                                os.chdir(attempts)
+                                for filename in os.listdir(attempts):
+                                # if the file ends with c in submissions, we want to print
+                                    if filename.endswith(".c"):
+                                        print(os.path.abspath(filename))
+                                        lineList = list()
+                                        fileName = filename
+                                        with open(fileName) as f:
+                                            lineList = f.readlines()
+                                        for l in lineList:
+                                            print(l)
+                                            continue
+                                    else:
                                         continue
-                                else:
-                                    continue
             # print number of student submissions
             print("Number of students:", count)
             # print where we are at
