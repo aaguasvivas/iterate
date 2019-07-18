@@ -15,8 +15,10 @@ for filename in os.listdir(directory):
         print(os.path.abspath(filename))
         problemDir = os.path.abspath(filename)
         cwd = os.getcwd()
+        # join paths
         problem_path = os.path.join(cwd, problemDir)
         print(os.listdir(problem_path))
+        # lists the directories
         stdDirs = os.listdir(problem_path)
         # count directories -- count students
         # Initialize count
@@ -35,6 +37,7 @@ for filename in os.listdir(directory):
                     count =+ 1
                     if (os.path.isdir(submission_path)):
                         for direct in os.listdir(submission_path):
+                            # we want to keep joining the paths to go further into the directories
                             file_path = os.path.join(submission_path, direct) 
                             if direct.startswith("0"):
                                 for filename in os.listdir(file_path):
