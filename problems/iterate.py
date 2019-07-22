@@ -2,9 +2,9 @@ import os
 import sys
 
 # We start at problems directory
-directory = '/home/aaguasvivas/Documents/DataSets/IntroClass/problems'
+directory = '/Users/Adelson/documents/iterate/problems'
 # Checksum path
-path = '/home/aaguasvivas/Documents/DataSets/IntroClass/problems/checksum'
+path = '/Users/Adelson/documents/iterate/problems/checksum'
 
 for filename in os.listdir(directory):
     # We don't want to include iterate into this
@@ -34,18 +34,19 @@ for filename in os.listdir(directory):
                 # other directories would be students
                 if (os.path.isdir(submission_path)):
                     # for every student found, increment
-                    count =+ 1
+                    count = + 1
                     if (os.path.isdir(submission_path)):
                         for direct in os.listdir(submission_path):
                             # we want to keep joining the paths to go further into the directories
-                            file_path = os.path.join(submission_path, direct) 
+                            file_path = os.path.join(submission_path, direct)
                             if direct.startswith("0"):
                                 for filename in os.listdir(file_path):
-                                # if the file ends with c in submissions, we want to print
+                                    # if the file ends with c in submissions, we want to print
                                     if filename.endswith(".c"):
                                         print(os.path.abspath(filename))
                                         lineList = list()
-                                        fileName = os.path.join(file_path, filename)
+                                        fileName = os.path.join(
+                                            file_path, filename)
                                         with open(fileName) as f:
                                             lineList = f.readlines()
                                         for l in lineList:
@@ -58,4 +59,4 @@ for filename in os.listdir(directory):
             # print where we are at
             print(os.path.abspath(filename))
         os.chdir(cwd)
-        print (os.listdir(cwd))
+        print(os.listdir(cwd))
